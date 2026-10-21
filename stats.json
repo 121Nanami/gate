@@ -7,7 +7,7 @@
   "days_left": 10,
   "skus": 6,
   "hn": "Making1ktm",
-  "updated_at": "2026-10-21T01:10:48.928610+00:00",
+  "updated_at": "2026-10-21T01:20:29.010820+00:00",
   "needed_per_day": 100.0,
   "on_pace": false,
   "products": [
@@ -41,5 +41,15 @@
       "price": 49,
       "url": "https://2406902730061.gumroad.com/l/ejvjut"
     }
-  ]
+  ],
+  "compound": {
+    "bank_usd": 0.0,
+    "reinvest_budget_usd": 0.0,
+    "reinvest_available_usd": 0.0,
+    "reinvest_pct": 0.4,
+    "bank_pct": 0.6,
+    "dynamic_soft_cap_usd": 50.0,
+    "dynamic_daily_cap_usd": 150.0,
+    "bet_target_hit": false
+  }
 }
