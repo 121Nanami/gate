@@ -57,6 +57,7 @@ function shell(active: string, body: string) {
       <nav>
         <a href="#/home" class="${active === "home" ? "on" : ""}">Home</a>
         <a href="#/gate" class="${active === "gate" ? "on" : ""}">GATE</a>
+        <a href="#/templates" class="${active === "templates" ? "on" : ""}">Templates</a>
         <a href="#/pricing" class="${active === "pricing" ? "on" : ""}">Pricing</a>
         <a href="#/bet" class="${active === "bet" ? "on" : ""}">Public bet</a>
       </nav>
@@ -118,6 +119,40 @@ function home(stats: Stats) {
   );
 }
 
+function templates() {
+  const items = [
+    { name: "Notion Creator OS", price: "$29", blurb: "Content, offers, money, weekly review.", href: LINKS.notionCreator },
+    { name: "Notion Freelance CRM", price: "$24", blurb: "Leads, stages, next actions.", href: LINKS.notionCrm },
+    { name: "Notion SaaS Launch OS", price: "$27", blurb: "Interviews → launch kill criteria.", href: LINKS.notionSaas },
+    { name: "Notion Content Engine", price: "$19", blurb: "50 hooks + batching system.", href: LINKS.notionContent },
+    { name: "Shopify Dawn Presets", price: "$39", blurb: "Hero, features, FAQ Liquid sections.", href: LINKS.shopifyDawn },
+    { name: "Everything bundle", price: "$149", blurb: "AI packs + Notion + Shopify.", href: LINKS.bundle },
+  ];
+  return shell(
+    "templates",
+    `
+    <section class="panel">
+      <div class="kicker">Templates</div>
+      <h2>Notion + Shopify packs that install in minutes</h2>
+      <p class="lead">Real downloadable zips — CSV/schema for Notion, Dawn Liquid sections for Shopify. No fluff PDFs.</p>
+    </section>
+    <section class="grid-3" style="margin-top:1rem">
+      ${items
+        .map(
+          (t) => `
+        <div class="panel price-card">
+          <div class="kicker">${t.price}</div>
+          <h2>${t.name}</h2>
+          <p class="lead">${t.blurb}</p>
+          <a class="btn" href="${t.href}" target="_blank" rel="noreferrer">Get pack</a>
+        </div>`
+        )
+        .join("")}
+    </section>
+  `
+  );
+}
+
 function pricing() {
   const tiers = [
     {
@@ -128,23 +163,23 @@ function pricing() {
       href: "#/gate",
     },
     {
+      name: "Notion / Shopify templates",
+      price: "$19–39",
+      blurb: "Creator OS, CRM, SaaS launch, Dawn presets.",
+      cta: "Browse templates",
+      href: "#/templates",
+    },
+    {
       name: "Operator pack",
       price: "$19",
-      blurb: "Downloadable depth: worksheets, policy one-pager, PR templates.",
+      blurb: "AI PR worksheets and policy one-pager.",
       cta: "Buy pack",
       href: LINKS.pack,
     },
     {
-      name: "Action license",
-      price: "$49",
-      blurb: "Paid Shipgate Action rules + license key for private repos.",
-      cta: "Get license",
-      href: LINKS.actionLicense,
-    },
-    {
       name: "Full kit bundle",
-      price: "$129",
-      blurb: "All operator packs in one download.",
+      price: "$149",
+      blurb: "AI + Notion + Shopify in one purchase.",
       cta: "Buy bundle",
       href: LINKS.bundle,
     },
@@ -274,6 +309,10 @@ async function render() {
   if (r === "gate") {
     app.innerHTML = shell("gate", `<div id="workspace"></div>`);
     mountWorkspace(app.querySelector("#workspace")!);
+    return;
+  }
+  if (r === "templates") {
+    app.innerHTML = templates();
     return;
   }
   if (r === "pricing") {
