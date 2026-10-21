@@ -1,0 +1,17 @@
+# Example — copy into repos that want Shipgate PR comments.
+name: Shipgate example
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  shipgate:
+    if: false # disabled in this repo; enable in consumer repos
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: 121Nanami/gate-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # license-key: ${{ secrets.SHIPGATE_LICENSE }}
