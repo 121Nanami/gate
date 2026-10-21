@@ -1,0 +1,20 @@
+{
+  "target_usd": 1000,
+  "revenue_usd": 0,
+  "spend_usd": 0,
+  "profit_usd": 0,
+  "deadline": "2026-10-31",
+  "days_left": 10,
+  "skus": 10,
+  "hn": "Making1ktm",
+  "updated_at": "2026-10-21T01:00:00+00:00",
+  "needed_per_day": 100,
+  "on_pace": false,
+  "products": [
+    { "name": "Ship AI Code Operator Pack", "price": 19, "url": "https://2406902730061.gumroad.com/l/ejvjut" },
+    { "name": "Operator Revenue Kit Bundle", "price": 129, "url": "https://2406902730061.gumroad.com/l/scqqm" },
+    { "name": "AI PR Risk Audit (Async)", "price": 299, "url": "https://2406902730061.gumroad.com/l/cuibwl" },
+    { "name": "Digital Product Sprint", "price": 499, "url": "https://2406902730061.gumroad.com/l/wqnwmm" },
+    { "name": "Shipgate Action License", "price": 49, "url": "https://2406902730061.gumroad.com/l/ejvjut" }
+  ]
+}
