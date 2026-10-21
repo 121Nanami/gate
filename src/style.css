@@ -46,7 +46,83 @@ a {
 #app {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1.25rem 1.25rem 4rem;
+  padding: 0 1.25rem 4rem;
+}
+
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 1.25rem;
+}
+
+.topnav .brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+
+.topnav nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.topnav nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-family: "Fragment Mono", monospace;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.topnav nav a.on,
+.topnav nav a:hover {
+  color: var(--ink);
+}
+
+.topnav .nav-cta {
+  margin-left: auto;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.price-card h2 {
+  font-size: 1.15rem;
+}
+
+.plain-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.plain-list li {
+  margin: 0.35rem 0;
+}
+
+.site-foot {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #cfc4b2;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .bet {
