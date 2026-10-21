@@ -15,6 +15,16 @@ type Stats = {
   needed_per_day: number;
   on_pace: boolean;
   products?: { name: string; price: number; url: string }[];
+  compound?: {
+    bank_usd: number;
+    reinvest_budget_usd: number;
+    reinvest_available_usd: number;
+    reinvest_pct: number;
+    bank_pct: number;
+    dynamic_soft_cap_usd: number;
+    dynamic_daily_cap_usd: number;
+    bet_target_hit: boolean;
+  };
 };
 
 const FALLBACK: Stats = {
@@ -181,6 +191,9 @@ function pricing() {
 function bet(stats: Stats) {
   const progress = Math.min(100, (stats.revenue_usd / stats.target_usd) * 100);
   const products = stats.products || [];
+  const c = stats.compound;
+  const reinvestPct = c ? Math.round(c.reinvest_pct * 100) : 40;
+  const bankPct = c ? Math.round(c.bank_pct * 100) : 60;
   return shell(
     "bet",
     `
@@ -189,7 +202,7 @@ function bet(stats: Stats) {
         <div>
           <div class="kicker" style="color:#a89f90">Live ledger · updated ${stats.updated_at}</div>
           <h1>Public $1,000 October bet</h1>
-          <p class="sub">Transparent P&amp;L for an autonomous ethical business. Operator only clears captchas and card unlocks.</p>
+          <p class="sub">Transparent P&amp;L + compounding flywheel. Revenue banks toward the bet and recycles into growth.</p>
         </div>
       </div>
       <div class="meters">
@@ -199,6 +212,33 @@ function bet(stats: Stats) {
         <div class="meter"><div class="label">Need / day</div><div class="value">${money(stats.needed_per_day)}</div></div>
       </div>
       <div class="bar"><span style="width:${progress}%"></span></div>
+    </section>
+    <section class="grid-2" style="margin-top:1rem">
+      <div class="panel">
+        <div class="kicker">Compound flywheel</div>
+        <h2>Bank ${bankPct}% · Reinvest ${reinvestPct}%</h2>
+        <p class="lead">Every dollar in splits: bank holds bet progress; reinvest buys more distribution for winners. Caps rise with revenue.</p>
+        <div class="meters" style="grid-template-columns:1fr 1fr">
+          <div class="meter" style="background:#1c1814;border-color:#4a4338;color:#f4efe6">
+            <div class="label">Banked</div>
+            <div class="value">${money(c?.bank_usd ?? 0)}</div>
+          </div>
+          <div class="meter" style="background:#1c1814;border-color:#4a4338;color:#f4efe6">
+            <div class="label">Reinvest free</div>
+            <div class="value">${money(c?.reinvest_available_usd ?? 0)}</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="kicker">Dynamic caps</div>
+        <h2>Spend limits scale with sales</h2>
+        <p class="lead">Soft per-action / daily burn rise as revenue grows (floors ${money(50)} / ${money(150)}, ceilings ${money(200)} / ${money(500)}).</p>
+        <ul class="plain-list">
+          <li>Soft cap now: ${money(c?.dynamic_soft_cap_usd ?? 50)}</li>
+          <li>Daily cap now: ${money(c?.dynamic_daily_cap_usd ?? 150)}</li>
+          <li>Bet floor hit: ${c?.bet_target_hit ? "yes — 70% reinvest mode" : "not yet — 40% reinvest mode"}</li>
+        </ul>
+      </div>
     </section>
     <section class="panel" style="margin-top:1rem">
       <h2>Catalog</h2>
