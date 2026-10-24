@@ -4,11 +4,11 @@
   "spend_usd": 0.0,
   "profit_usd": 0.0,
   "deadline": "2026-10-31",
-  "days_left": 8,
+  "days_left": 7,
   "skus": 10,
   "hn": "Making1ktm",
-  "updated_at": "2026-10-23T13:32:47.879962+00:00",
-  "needed_per_day": 125.0,
+  "updated_at": "2026-10-24T00:27:26.333545+00:00",
+  "needed_per_day": 142.86,
   "on_pace": false,
   "products": [
     {
